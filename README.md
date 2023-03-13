@@ -1,32 +1,18 @@
-# _Sample project_
+# 硬禾寒假学堂5
 
-(See the README.md file in the upper level 'examples' directory for more information about examples.)
+## 题目详情
+题目[详情](https://www.eetree.cn/project/detail/1352)
 
-This is the simplest buildable example. The example is used by command `idf.py create-project`
-that copies the project to user specified path and set it's name. For more information follow the [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project)
+## 实现思路
+1. 加速度部分使用IIC协议读取加速度计MMA7600FC，单开任务不断读取。使用循环限幅算法，设置阈值，检测静止。
+2. 屏幕部分使用SPI协议发送屏幕数据，LCD数据芯片为ST7789，其颜色显示与手册不对应，可能是电路硬件的问题。
+3. 彩灯部分调用LED PWM的API，使用标志位和任务计数器粗略定时，完成30s计数任务；同时将X,Y,Z轴的数据映射到LED彩灯的RGB三个硬件管脚的8位占空比上，实现LED灯随方向变化的功能。
 
+## BUG
+1. LCD部分颜色显示与芯片手册不对应，怀疑是LCD裸屏电路硬件管脚问题。
+2. 彩灯PWM通道原先直连在串口0上，对于ESP32来说，串口0是不能定义为其他管脚的，直连在这里画硬件的人是不是傻逼？题目还要求控制这个彩灯。解决方案：使用飞线强制使用未使用的管脚，直连在LED上。
 
-
-## How to use example
-We encourage the users to use the example as a template for the new projects.
-A recommended way is to follow the instructions on a [docs page](https://docs.espressif.com/projects/esp-idf/en/latest/api-guides/build-system.html#start-a-new-project).
-
-## Example folder contents
-
-The project **sample_project** contains one source file in C language [main.c](main/main.c). The file is located in folder [main](main).
-
-ESP-IDF projects are built using CMake. The project build configuration is contained in `CMakeLists.txt`
-files that provide set of directives and instructions describing the project's source files and targets
-(executable, library, or both). 
-
-Below is short explanation of remaining files in the project folder.
-
-```
-├── CMakeLists.txt
-├── main
-│   ├── CMakeLists.txt
-│   └── main.c
-└── README.md                  This is the file you are currently reading
-```
-Additionally, the sample project contains Makefile and component.mk files, used for the legacy Make based build system. 
-They are not used or needed when building with CMake and idf.py.
+## 效果
+<video id="video" controls="" preload="none">
+      <source id="mp4" src="./img/VID_20230313_190722.mp4" type="video/mp4">
+</videos>
