@@ -13,6 +13,4 @@
 2. 彩灯PWM通道原先直连在串口0上，对于ESP32来说，串口0是不能定义为其他管脚的，直连在这里画硬件的人是不是傻逼？题目还要求控制这个彩灯。解决方案：使用飞线强制使用未使用的管脚，直连在LED上。
 
 ## 效果
-<video id="video" controls="" preload="none">
-      <source id="mp4" src="./img/VID_20230313_190722.mp4" type="video/mp4">
-</videos>
+[![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](./img/VID_20230313_190722.mp4)
