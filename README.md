@@ -14,3 +14,6 @@
 
 ## 效果
 [![Watch the video](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](./img/VID_20230313_190722.mp4)
+
+## 提交的报告
+[硬禾项目](%E7%A1%AC%E7%A6%BE%E9%A1%B9%E7%9B%AE.pdf)
